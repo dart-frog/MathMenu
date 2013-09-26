@@ -25,12 +25,14 @@ public class Menu {
 			op1 = console.nextInt();
 		}
 		catch(InputMismatchException e){
-			dicipline("type in words", "multiply" );
-			multiplyMenu(); 
+			console.next();
+			System.out.println("\n" + op1);
+			dicipline("in numbers with out decimals", "multiply");
+			
 		}
 		
 		if (op1 < 0){
-			dicipline("type negitive numbers","multiply");
+			dicipline("type positve numbers","multiply");
 		}
 		System.out.print("operator 2: ");	
 		int op2 = console.nextInt();
@@ -45,19 +47,19 @@ public class Menu {
 	public static void dicipline(String crime,String c){
 		demerit++; 
 		if (demerit == 1){
-			System.out.println("please don't " + crime);
+			System.out.println("please type" + crime);
 		}
 		else {
 			System.out.println("Your reckless misconduct has been noted");
 			System.out.println("you have " + demerit + " demerits!");
 		}
 		
-		if (c.equals("multiply")){
+		//if (c.equals("multiply")){
 			multiplyMenu();
-		}
-		else{
+		//}
+		//else{
 		
-		}
+		//}
 			
 		
 		
