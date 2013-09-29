@@ -1,4 +1,5 @@
 import java.util.InputMismatchException;
+
 import java.util.Scanner;
 
 
@@ -11,16 +12,17 @@ public class Menu {
 	
 	public static  void myMenu(){
 		
-		System.out.print("What operation would you like to do? ");
+		System.out.print("What operation would you like to do? (multiply, power, or exit) ");
 		String answer = console.next();
-		
-		if (console.hasNext()){
-			System.out.print("Please type in only one word either Power, Multiply or Exit");
-			multiplyMenu(); 
+		String a = console.nextLine();
+		String[] as = a.split(" ");
+		if (as.length > 1){
+			dicipline(" in only exit, multiply, or power", "menu");
 		}
-		System.out.print(answer);
+		
 		if (answer.equalsIgnoreCase("multiply")){
 			multiplyMenu();
+			
 		}
 		
 		else if (answer.equalsIgnoreCase("power")){
@@ -42,14 +44,16 @@ public class Menu {
 		int op2 = 0;
 		try{
 			op1 = console.nextInt();
+			String a = console.nextLine();
+			String[] as = a.split(" ");
+			if (as.length > 1){
+				dicipline(" in only one number", "multiply");
+			}
 		}
 		catch(InputMismatchException e){
 			console.next();
 			dicipline(" in numbers with out decimals", "multiply");
 			
-		}
-		if (console.hasNext()){
-			dicipline(" in only a single number", "multiply");
 		}
 		if (op1 < 0){
 			dicipline(" positve numbers","multiply");
@@ -57,8 +61,13 @@ public class Menu {
 		System.out.print("operator 2: ");	
 		try{
 			op2 = console.nextInt();
+			String a = console.nextLine();
+			String[] as = a.split(" ");
+			if (as.length > 1){
+				dicipline(" in only one number", "multiply");
+			}
 		}
-		catch(InputMismatchException e) {
+		catch(InputMismatchException e){
 			console.next();
 			dicipline(" in numbers with out decimals", "multiply");
 			
@@ -73,26 +82,80 @@ public class Menu {
 	}
 	public static void dicipline(String crime,String c){
 		demerit++; 
-		if (demerit == 1){
 			System.out.println("please type" + crime);
+		
+		if (demerit < 3){
+			
+		}
+		else if ( demerit < 5){
+			System.out.println("Your reckless misconduct has been noted");
+		}
+		else if (demerit < 6 ){
+			System.out.println("Just so you know your misconduct really has been noted");
+		}
+		else if (demerit < 7){
+			System.out.println("please type in your parent's email adress so  we can notify them of your bad behavoir!");
+			console.next();
 		}
 		else {
-			System.out.println("Your reckless misconduct has been noted");
-			System.out.println("you have " + demerit + " demerits!");
+			System.out.println("really?");
 		}
 		
 		if (c.equals("multiply")){
 			multiplyMenu();
 		}
-		else{
+		else if (c.equals("power")){
 			powerMenu();
+		}
+		else{
+			myMenu();
 		}
 			
 		
 		
 	}
+	
 	public static void powerMenu(){
-		System.out.println("ahhhhhhhhhhhhhh");
+		System.out.println("What number do you want to exponentially increase?");
+		System.out.print("operator: ");
+		int op1 = 0;
+		int op2 = 0;
+		try{
+			op1 = console.nextInt();
+			String a = console.nextLine();
+			String[] as = a.split(" ");
+			if (as.length > 1){
+				dicipline(" in only one number", "power");
+			}
+		}
+		catch(InputMismatchException e){
+			console.next();
+			dicipline(" in numbers with out decimals", "power");
+			
+		}
+		if (op1 < 0){
+			dicipline(" positve numbers","power");
+		}
+		System.out.print("exponet: ");
+		try{
+			op2 = console.nextInt();
+			String a = console.nextLine();
+			String[] as = a.split(" ");
+			if (as.length > 1){
+				dicipline(" in only one number", "power");
+			}
+		}
+		catch(InputMismatchException e){
+			console.next();
+			dicipline(" in numbers with out decimals", "power");
+			
+		}
+		if (op2 < 0){
+			dicipline(" positve numbers","power");
+		}
+		System.out.println(MyMath.power(op1, op2));
+		myMenu();
+		
 	}
 	
 }
